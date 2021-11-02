@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -27,6 +28,7 @@ class Message
      *
      * @Assert\NotBlank(message="Votre nom est requis")
      * @Assert\Length(max=100)
+     * @Groups({"storage_message"})
      */
     private $name;
 
@@ -36,6 +38,7 @@ class Message
      * @Assert\NotBlank(message="Veuillez renseigner votre email")
      * @Assert\Email(message="Un email valide est requis")
      * @Assert\Length(max=180)
+     * @Groups({"storage_message"})
      */
     private $email;
 
@@ -43,6 +46,8 @@ class Message
      * @ORM\Column(type="text")
      *
      * @Assert\NotBlank(message="Veuillez saisir un message")
+     * @Groups({"storage_message"})
+     *
      */
     private $content;
 
