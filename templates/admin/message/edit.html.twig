@@ -1,0 +1,35 @@
+{% extends 'admin/layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="box-header with-border">
+            <h3 class="box-title">Message de {{ form.email.vars.value }}</h3>
+        </div>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(form.name, {'label': 'Nom'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(form.email, {'label': 'Email'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(form.content, {'label': 'Contenu'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(form.treated, {'label': 'Traité'}) }}
+            </div>
+        </div>
+        <div>
+            <a href="{{ path('admin_message_index') }}" class="btn bg-gray">Retour</a>
+            <button type="submit" class="btn btn-success">Sauvegarder</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content_header %}
+    <section class="content-header">
+        <!-- Content Wrapper. Contains page content -->
+        <h1>
+            Liste des messages
+        </h1>
+    </section>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            {{ include('alert_message/_alert_messages.html.twig') }}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content%}
+    <section class="content">
+        <div class="col-md-12">
+            {% for email, item in messages %}
+                <div class="box-header with-border">
+                    <h2 class="box-title"><b>{{ email }}</b></h2>
+                </div>
+                <div class="box">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px">Statut</th>
+                                <th style="width: 180px">Reçu le</th>
+                                <th style="width: 240px">Nom</th>
+                                <th style="width: 900px">Message</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for message in item %}
+                            {% include 'admin/message/_table_message.html.twig' %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

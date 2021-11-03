@@ -1,0 +1,24 @@
+<tr>
+    <td>
+        {% if message.treated == false %}
+            <span class="label label-danger">Non traité</span>
+        {% else %}
+            <span class="label label-success">Traité</span>
+        {% endif %}
+    </td>
+    <td>{{ message.createdAt|format_datetime() }}</td>
+    <td>{{ message.name }}</td>
+    <td>{{ message.content }}</td>
+    <td>
+        <ul class="list-inline actions-list">
+            <li class="list-inline-item">
+                <a href="#messageModal-{{ message.id }}" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-eye mr-1"></i>Visualiser</a></li>
+            <li class="list-inline-item">
+                <a href="{{ path('admin_message_edit', {id: message.id}) }}" class="btn btn-sm bg-purple"><i class="fa fa-fw fa-edit mr-1"></i>Editer</a>
+            </li>
+        </ul>
+    </td>
+</tr>
+
+{% include 'admin/message/_modal_message.html.twig' %}
+
