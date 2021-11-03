@@ -24,22 +24,22 @@ class JsonStorage implements StorageInterface
     /**
      * @var string
      */
-    private $downloadDirAbsolutePath;
+    private $uploadDirAbsolutePath;
 
     /**
      * JsonStorage constructor.
-     * @param string $downloadDirAbsolutePath
+     * @param string $uploadDirAbsolutePath
      * @param Filesystem $filesystem
      * @param SerializerInterface $serializer
      */
     public function __construct(
-        string $downloadDirAbsolutePath,
+        string $uploadDirAbsolutePath,
         Filesystem $filesystem,
         SerializerInterface $serializer
     ) {
         $this->filesystem = $filesystem;
         $this->serializer = $serializer;
-        $this->downloadDirAbsolutePath = $downloadDirAbsolutePath;
+        $this->uploadDirAbsolutePath = $uploadDirAbsolutePath;
     }
 
     /**
@@ -49,7 +49,7 @@ class JsonStorage implements StorageInterface
     {
         $filename = $this->getFilename();
         $messageSerialized = $this->serializer->serialize($message, 'json', ['groups' => 'storage_message']);
-        $this->filesystem->dumpFile($this->downloadDirAbsolutePath . '/' . $filename, $messageSerialized);
+        $this->filesystem->dumpFile($this->uploadDirAbsolutePath . '/' . $filename, $messageSerialized);
     }
 
     /**
