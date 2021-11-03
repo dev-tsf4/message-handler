@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/contact", name="app_contact")
+     * @Route("/contact", name="contact")
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @param EventDispatcherInterface $dispatcher
@@ -36,7 +36,7 @@ class ContactController extends AbstractController
             $manager->flush();
             $dispatcher->dispatch(new MessageEvent($message));
             $this->addFlash('success', 'Votre message a bien été envoyé');
-            return $this->redirectToRoute('app_contact');
+            return $this->redirectToRoute('contact');
         }
 
         return $this->render('contact/index.html.twig', [

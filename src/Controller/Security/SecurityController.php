@@ -11,14 +11,14 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/connexion", name="app_admin_login")
+     * @Route("/connexion", name="admin_login")
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_admin_dashboard');
+            return $this->redirectToRoute('admin_dashboard');
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/deconnexion", name="app_admin_logout")
+     * @Route("/deconnexion", name="admin_logout")
      */
     public function logout()
     {

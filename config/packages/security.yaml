@@ -18,11 +18,11 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
             form_login:
-                login_path: app_admin_login
-                check_path: app_admin_login
+                login_path: admin_login
+                check_path: admin_login
             logout:
-                path: app_admin_logout
-                target: app_admin_login
+                path: admin_logout
+                target: admin_login
         main:
             anonymous: lazy
 

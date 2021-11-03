@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MessageController extends AbstractController
 {
     /**
-     * @Route("/{id}/edit", name="app_admin_message_edit")
+     * @Route("/{id}/edit", name="admin_message_edit")
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @param Message $message
@@ -32,7 +32,7 @@ class MessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->flush();
             $this->addFlash('success', 'Votre message a bien été modifié');
-            return $this->redirectToRoute('app_admin_message_index');
+            return $this->redirectToRoute('admin_message_index');
         }
         return $this->render('admin/message/edit.html.twig', [
             'form' => $form->createView(),
@@ -40,7 +40,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/", name="app_admin_message_index")
+     * @Route("/", name="admin_message_index")
      * @param MessageRepository $repository
      * @return Response
      */
