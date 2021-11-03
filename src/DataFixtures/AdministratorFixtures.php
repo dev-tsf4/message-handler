@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\DataFixtures;
@@ -32,11 +33,10 @@ class AdministratorFixtures extends Fixture
 
     private function loadAdministrators(ObjectManager $manager)
     {
-        foreach ($this->getAdministratorsData() as [$email, $password, $roles]) {
+        foreach ($this->getAdministratorsData() as [$email, $password]) {
             $administrator = new Administrator();
             $administrator->setEmail($email);
             $administrator->setPassword($this->encoder->encodePassword($administrator, $password));
-            $administrator->setRoles($roles);
 
             $manager->persist($administrator);
         }
@@ -46,8 +46,8 @@ class AdministratorFixtures extends Fixture
     private function getAdministratorsData(): array
     {
         return [
-          ['admin@mail.com', 'admin', ['ROLE_ADMIN']],
-          ['johndoe@mail.com', 'secret123', ['ROLE_ADMIN']]
+          ['admin@mail.com', 'admin'],
+          ['johndoe@mail.com', 'secret123']
         ];
     }
 }
