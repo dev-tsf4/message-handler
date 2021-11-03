@@ -35,7 +35,8 @@ class MessageType extends AbstractType
             ->add('content', TextareaType::class, [
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Votre message'
+                    'placeholder' => 'Votre message',
+                    'rows' => 8
                 ]
             ])
         ;
@@ -58,6 +59,9 @@ class MessageType extends AbstractType
                     ])
                     ->add('content', TextareaType::class, [
                         'disabled' => true,
+                        'attr' => [
+                            'rows' => 8
+                        ]
                     ])
                 ;
             }
