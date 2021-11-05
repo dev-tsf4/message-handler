@@ -17,54 +17,49 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MessageType extends AbstractType
 {
+    /**
+     * The field can be modified (edit or create message)
+     * @var bool
+     */
+    private $status = false;
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('name', TextType::class, [
-                'required' => true,
-                'attr' => [
-                    'placeholder' => 'Votre nom'
-                ]
-            ])
-            ->add('email', EmailType::class, [
-                'required' => true,
-                'attr' => [
-                    'placeholder' => 'Votre email'
-                ]
-            ])
-            ->add('content', TextareaType::class, [
-                'required' => true,
-                'attr' => [
-                    'placeholder' => 'Votre message',
-                    'rows' => 8
-                ]
-            ])
-        ;
-
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
 
             $form = $event->getForm();
             $message = $event->getData();
 
             if ($message->getId() !== null) {
+                $this->status = true;
                 $form
                     ->add('treated', CheckboxType::class, [
                         'required' => false,
-                    ])
-                    ->add('name', TextType::class, [
-                        'disabled' => true,
-                    ])
-                    ->add('email', EmailType::class, [
-                        'disabled' => true,
-                    ])
-                    ->add('content', TextareaType::class, [
-                        'disabled' => true,
-                        'attr' => [
-                            'rows' => 8
-                        ]
-                    ])
-                ;
+                    ]);
             }
+            $form
+                ->add('name', TextType::class, [
+                    'required' => true,
+                    'disabled' => $this->status,
+                    'attr' => [
+                        'placeholder' => 'Votre nom'
+                    ]
+                ])
+                ->add('email', EmailType::class, [
+                    'required' => true,
+                    'disabled' => $this->status,
+                    'attr' => [
+                        'placeholder' => 'Votre email'
+                    ]
+                ])
+                ->add('content', TextareaType::class, [
+                    'required' => true,
+                    'disabled' => $this->status,
+                    'attr' => [
+                        'placeholder' => 'Votre message',
+                        'rows' => 8
+                    ]
+                ]);
         });
     }
 
