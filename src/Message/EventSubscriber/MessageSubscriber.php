@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Message\EventSubscriber;
 
 use App\Message\Event\MessageEvent;
-use App\Storage\JsonStorage;
 use App\Storage\StorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
